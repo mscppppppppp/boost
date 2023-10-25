@@ -14,6 +14,11 @@ jobs:
         repository: boostorg/boost  # original Boost repository
         ref: boost-1.67.0  # specific tag
        # submodules: recursive  # gets Boost submodules
+    - name: List directory contents
+      run: |
+        dir
+        dir boost
+
 
     - name: Set up Visual Studio
       uses: ilammy/msvc-dev-cmd@v1
