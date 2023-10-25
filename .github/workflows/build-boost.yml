@@ -1,0 +1,32 @@
+name: Build Boost Libraries
+
+on:
+  push:
+    tags:
+      - boost-1.67.0
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        ref: boost-1.67.0  # Checkout to tag boost-1.67.0
+
+    - name: Set up Visual Studio
+      uses: ilammy/msvc-dev-cmd@v1
+      with:
+        toolset: 14.16  # Corresponds to Visual Studio 2017
+
+    - name: Build Boost Libraries
+      run: |
+        bootstrap.bat
+        .\b2 toolset=msvc-14.1 address-model=64 variant=release link=shared runtime-link=shared
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: boost-binaries
+        path: stage/lib/*  # Adjust this path based on where the built DLL and LIB files are located
