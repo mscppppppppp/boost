@@ -21,7 +21,7 @@ jobs:
         toolset: 14.16  # Corresponds to Visual Studio 2017
 
     - name: Build Boost Libraries
-      working-directory: ${{ github.workspace }}/boost  # Set the working directory to the 'boost' subdirectory
+      working-directory: ${{ github.workspace }}/boost/boost  # Set the working directory to the nested 'boost' subdirectory
       run: |
         bootstrap.bat
         .\b2 toolset=msvc-14.1 address-model=64 variant=release link=shared runtime-link=shared
