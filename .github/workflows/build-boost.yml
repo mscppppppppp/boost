@@ -13,11 +13,8 @@ jobs:
       with:
         repository: boostorg/boost  # original Boost repository
         ref: boost-1.67.0  # specific tag
-       # submodules: recursive  # gets Boost submodules
-    - name: List directory contents
-      run: |
-        dir
-        dir boost
+        submodules: recursive  # gets Boost submodules
+
 
 
     - name: Set up Visual Studio
@@ -28,9 +25,8 @@ jobs:
     - name: Build Boost Libraries
       shell: cmd
       run: |
-        cd boost
-        cmd /c bootstrap
-        cmd /c b2 toolset=msvc-14.1 address-model=64 variant=release link=shared runtime-link=shared
+        bootstrap
+        b2 toolset=msvc-14.1 address-model=64 variant=release link=shared runtime-link=shared
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
