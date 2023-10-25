@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - boost-1.67.0
+  workflow_dispatch:
 
 jobs:
   build:
