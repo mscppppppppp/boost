@@ -26,7 +26,7 @@ jobs:
       shell: cmd
       run: |
         cmd /c bootstrap
-        b2 cxxflags="/Zc:inline /Zc:throwingNew" toolset=vc141 address-model=64 link=shared runtime-link=shared --with-chrono --with-date_time --with-filesystem --with-system --with-iostreams --with-locale --with-log --with-program_options --with-regex --with-serialization --with-thread --with-timer --with-test --with-serialization --with-python --with-fiber -q -a --debug-configuration toolset=msvc-14.1 variant=debug,release link=static,shared threading=multi runtime-link=shared define=BOOST_USE_WINAPI_VERSION=0x0A00
+        b2 cxxflags="/Zc:inline /Zc:throwingNew" address-model=64 link=shared runtime-link=shared --with-chrono --with-date_time --with-filesystem --with-system --with-iostreams --with-locale --with-log --with-program_options --with-regex --with-serialization --with-thread --with-timer --with-test --with-serialization --with-python --with-fiber -q -a --debug-configuration toolset=msvc-14.1 variant=debug,release link=static,shared threading=multi runtime-link=shared define=BOOST_USE_WINAPI_VERSION=0x0A00
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
