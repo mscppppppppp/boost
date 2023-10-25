@@ -13,7 +13,7 @@ jobs:
       with:
         repository: boostorg/boost  # original Boost repository
         ref: boost-1.67.0  # specific tag
-        submodules: recursive  # gets Boost submodules
+       # submodules: recursive  # gets Boost submodules
 
     - name: Set up Visual Studio
       uses: ilammy/msvc-dev-cmd@v1
@@ -21,7 +21,7 @@ jobs:
         toolset: 14.16  # Corresponds to Visual Studio 2017
 
     - name: Build Boost Libraries
-      working-directory: ${{ github.workspace }}  # Set the working directory to the repository root
+      working-directory: ${{ github.workspace }}/boost  # Set the working directory to the 'boost' subdirectory
       run: |
         bootstrap.bat
         .\b2 toolset=msvc-14.1 address-model=64 variant=release link=shared runtime-link=shared
