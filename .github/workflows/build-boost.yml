@@ -4,7 +4,6 @@ on:
   push:
     tags:
       - boost-1.67.0
-  workflow_dispatch:
 
 jobs:
   build:
@@ -23,11 +22,10 @@ jobs:
 
     - name: Build Boost Libraries
       run: |
-        bootstrap.bat
         .\b2 toolset=msvc-14.1 address-model=64 variant=release link=shared runtime-link=shared
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
       with:
         name: boost-binaries
-        path: stage/lib/*  # Adjust this path based on where the built DLL and LIB files are located
+        path: stage/lib/*  # Adjust this path based on where the built DLL and LIB
