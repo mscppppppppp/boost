@@ -23,6 +23,7 @@ jobs:
     - name: Build Boost Libraries
       shell: cmd
       run: |
+        cd boost
         cmd /c bootstrap
         cmd /c b2 toolset=msvc-14.1 address-model=64 variant=release link=shared runtime-link=shared
 
