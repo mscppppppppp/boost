@@ -1,21 +1,19 @@
 name: Build Boost Libraries
 
 on:
-  push:
-    tags:
-      - boost-1.67.0
-  workflow_dispatch:
+  workflow_dispatch:  # allows manual triggering of the workflow
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout Boost code
       uses: actions/checkout@v2
       with:
-        ref: boost-1.67.0  # Checkout to tag boost-1.67.0
-        submodules: true
+        repository: boostorg/boost  # original Boost repository
+        ref: boost-1.67.0  # specific tag
+        submodules: recursive  # gets Boost submodules
 
     - name: Set up Visual Studio
       uses: ilammy/msvc-dev-cmd@v1
@@ -32,4 +30,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: boost-binaries
-        path: stage/lib/*  # Adjust this path based on where the built DLL and LIB
+        path: stage/lib/*  # Adjust this path based on where the built DLL and LIB files are located
