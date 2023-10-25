@@ -25,8 +25,8 @@ jobs:
     - name: Build Boost Libraries
       shell: cmd
       run: |
-        bootstrap
-        .\b2 toolset=msvc-14.1 address-model=64 variant=release link=shared runtime-link=shared
+        cmd /c bootstrap bootstrap
+        b2 toolset=vc141 address-model=64 variant=release link=shared runtime-link=shared
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v2
