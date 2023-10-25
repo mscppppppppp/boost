@@ -22,17 +22,12 @@ jobs:
       with:
         toolset: 14.1  # Corresponds to Visual Studio 2017
 
-    - name: Build Boost Libraries (32-bit)
+    - name: Build Boost Libraries
       shell: cmd
       run: |
         cmd /c bootstrap
-        echo. > user-config.jam
         set _OPTS=--with-fiber --with-chrono --with-date_time --with-filesystem --with-system --with-iostreams --with-locale --with-log --with-program_options --with-regex --with-serialization --with-thread --with-timer --with-test --with-serialization
         set PARAMS=-j%NUMBER_OF_PROCESSORS% -q -a --debug-configuration toolset=msvc-14.1 variant=debug,release link=static,shared threading=multi runtime-link=shared define=BOOST_USE_WINAPI_VERSION=0x0A00
-        b2 --user-config=user-config.jam %_OPTS% %PARAMS% address-model=32 cxxflags="/Zc:inline /Zc:throwingNew" --build-dir=..\boost-build32
-    - name: Build Boost Libraries (64-bit)
-      shell: cmd
-      run: |
         echo. > user-config64.jam
         b2 --user-config=user-config64.jam %_OPTS% %PARAMS% address-model=64 --build-dir=..\boost-build64 cxxflags="/Zc:inline /Zc:throwingNew"
 
@@ -41,5 +36,4 @@ jobs:
       with:
         name: boost-binaries
         path: |
-          boost-build32/stage/lib/*
           boost-build64/stage/lib/*
