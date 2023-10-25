@@ -20,7 +20,7 @@ jobs:
     - name: Set up Visual Studio
       uses: ilammy/msvc-dev-cmd@v1
       with:
-        toolset: 14.1  # Corresponds to Visual Studio 2017
+        toolset: 14.16  # Corresponds to Visual Studio 2017
 
     - name: Build Boost Libraries
       shell: cmd
